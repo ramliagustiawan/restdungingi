@@ -121,7 +121,7 @@
                 <h2>Selamat Datang | Matoduwolo | Welcome</h2>
                 <p>Assalammualaikum Wr. Wb.
 
-                    Dengan senang hati dan tangan terbuka kami menyampaikan salam yang hangat bagi Anda untuk mengenal Kecamatan Dungingi Kota Gorontalo di Provinsi Gorontalo.<br>
+                    Dengan senang hati dan tangan terbuka, kami menyampaikan salam yang hangat bagi Anda untuk mengenal Kecamatan Dungingi Kota Gorontalo di Provinsi Gorontalo.<br>
 
                     Situs ini diharapkan akan memberikan informasi publik serta dapat mempercepat pelayanan publik dikecamatan Dungingi.<br>
 
