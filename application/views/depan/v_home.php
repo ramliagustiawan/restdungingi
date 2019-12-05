@@ -113,7 +113,7 @@
         <div class="row">
 
             <div class="col-md-4">
-                <img src="<?php echo base_url() . 'theme/images/camat.jpg' ?>" class="img-fluid about-img" alt="Camat Dungingi">
+                <img src="<?php echo base_url() . 'theme/images/camat1.jpg' ?>" class="img-fluid about-img" alt="Camat Dungingi">
             </div>
 
 
@@ -148,7 +148,7 @@
         <div class="row">
 
             <?php foreach ($service->result() as $row) : ?>
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                     <div class="courses_box mb-2">
                         <div class="courses-img-wrap">
                             <a href="<?php echo site_url($row->service_metod); ?>">

@@ -179,7 +179,7 @@
                 </div>
                 <div class="col-xs-6 col-sm-4 col-md-3">
                     <div class="header-top_login mr-sm-3">
-                        <a class="btn btn-success" href="http://localhost/epaten/" target="blank">ePATEN | Ajukan Kebutuhan Anda</a>
+                        <a class="btn btn-success" href="https://www.dungingi.com" target="blank">ePATEN | Ajukan Kebutuhan Anda</a>
                     </div>
                 </div>
             </div>
