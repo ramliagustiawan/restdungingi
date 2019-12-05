@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Sep 22, 2019 at 12:02 PM
--- Server version: 5.7.26
--- PHP Version: 7.3.5
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 05 Des 2019 pada 13.41
+-- Versi server: 10.1.37-MariaDB
+-- Versi PHP: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,24 +25,22 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `keys`
+-- Struktur dari tabel `keys`
 --
 
-DROP TABLE IF EXISTS `keys`;
-CREATE TABLE IF NOT EXISTS `keys` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `keys` (
+  `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `key` varchar(40) NOT NULL,
   `level` int(2) NOT NULL,
   `ignore_limits` tinyint(1) NOT NULL DEFAULT '0',
   `is_private_key` tinyint(1) NOT NULL DEFAULT '0',
   `ip_addresses` text,
-  `date_created` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `date_created` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `keys`
+-- Dumping data untuk tabel `keys`
 --
 
 INSERT INTO `keys` (`id`, `user_id`, `key`, `level`, `ignore_limits`, `is_private_key`, `ip_addresses`, `date_created`) VALUES
@@ -52,21 +50,19 @@ INSERT INTO `keys` (`id`, `user_id`, `key`, `level`, `ignore_limits`, `is_privat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `limits`
+-- Struktur dari tabel `limits`
 --
 
-DROP TABLE IF EXISTS `limits`;
-CREATE TABLE IF NOT EXISTS `limits` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `limits` (
+  `id` int(11) NOT NULL,
   `uri` varchar(255) NOT NULL,
   `count` int(10) NOT NULL,
   `hour_started` int(11) NOT NULL,
-  `api_key` varchar(40) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `api_key` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `limits`
+-- Dumping data untuk tabel `limits`
 --
 
 INSERT INTO `limits` (`id`, `uri`, `count`, `hour_started`, `api_key`) VALUES
@@ -76,11 +72,10 @@ INSERT INTO `limits` (`id`, `uri`, `count`, `hour_started`, `api_key`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `statistik`
+-- Struktur dari tabel `statistik`
 --
 
-DROP TABLE IF EXISTS `statistik`;
-CREATE TABLE IF NOT EXISTS `statistik` (
+CREATE TABLE `statistik` (
   `ip` varchar(20) NOT NULL,
   `tanggal` date NOT NULL,
   `hits` int(11) NOT NULL DEFAULT '1',
@@ -88,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `statistik` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `statistik`
+-- Dumping data untuk tabel `statistik`
 --
 
 INSERT INTO `statistik` (`ip`, `tanggal`, `hits`, `online`) VALUES
@@ -106,17 +101,25 @@ INSERT INTO `statistik` (`ip`, `tanggal`, `hits`, `online`) VALUES
 ('::1', '2019-09-19', 15, '1568883776'),
 ('::1', '2019-09-20', 1, '1569023648'),
 ('::1', '2019-09-21', 38, '1569069011'),
-('::1', '2019-09-22', 2, '1569153527');
+('::1', '2019-09-22', 5, '1569159654'),
+('::1', '2019-09-23', 5, '1569207746'),
+('::1', '2019-10-02', 2, '1569979870'),
+('::1', '2019-10-10', 3, '1570673464'),
+('::1', '2019-10-11', 5, '1570760224'),
+('::1', '2019-10-21', 3, '1571620063'),
+('::1', '2019-11-28', 1, '1574909436'),
+('::1', '2019-12-03', 51, '1575413919'),
+('::1', '2019-12-04', 9, '1575434237'),
+('::1', '2019-12-05', 5, '1575549461');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_agenda`
+-- Struktur dari tabel `tbl_agenda`
 --
 
-DROP TABLE IF EXISTS `tbl_agenda`;
-CREATE TABLE IF NOT EXISTS `tbl_agenda` (
-  `agenda_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_agenda` (
+  `agenda_id` int(11) NOT NULL,
   `agenda_nama` varchar(200) DEFAULT NULL,
   `agenda_tanggal` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `agenda_deskripsi` text,
@@ -125,12 +128,11 @@ CREATE TABLE IF NOT EXISTS `tbl_agenda` (
   `agenda_tempat` varchar(90) DEFAULT NULL,
   `agenda_waktu` varchar(30) DEFAULT NULL,
   `agenda_keterangan` varchar(200) DEFAULT NULL,
-  `agenda_author` varchar(60) DEFAULT NULL,
-  PRIMARY KEY (`agenda_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  `agenda_author` varchar(60) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_agenda`
+-- Dumping data untuk tabel `tbl_agenda`
 --
 
 INSERT INTO `tbl_agenda` (`agenda_id`, `agenda_nama`, `agenda_tanggal`, `agenda_deskripsi`, `agenda_mulai`, `agenda_selesai`, `agenda_tempat`, `agenda_waktu`, `agenda_keterangan`, `agenda_author`) VALUES
@@ -140,24 +142,21 @@ INSERT INTO `tbl_agenda` (`agenda_id`, `agenda_nama`, `agenda_tanggal`, `agenda_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_album`
+-- Struktur dari tabel `tbl_album`
 --
 
-DROP TABLE IF EXISTS `tbl_album`;
-CREATE TABLE IF NOT EXISTS `tbl_album` (
-  `album_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_album` (
+  `album_id` int(11) NOT NULL,
   `album_nama` varchar(50) DEFAULT NULL,
   `album_tanggal` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `album_pengguna_id` int(11) DEFAULT NULL,
   `album_author` varchar(60) DEFAULT NULL,
   `album_count` int(11) DEFAULT '0',
-  `album_cover` varchar(40) DEFAULT NULL,
-  PRIMARY KEY (`album_id`),
-  KEY `album_pengguna_id` (`album_pengguna_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+  `album_cover` varchar(40) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_album`
+-- Dumping data untuk tabel `tbl_album`
 --
 
 INSERT INTO `tbl_album` (`album_id`, `album_nama`, `album_tanggal`, `album_pengguna_id`, `album_author`, `album_count`, `album_cover`) VALUES
@@ -168,18 +167,16 @@ INSERT INTO `tbl_album` (`album_id`, `album_nama`, `album_tanggal`, `album_pengg
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_bulan`
+-- Struktur dari tabel `tbl_bulan`
 --
 
-DROP TABLE IF EXISTS `tbl_bulan`;
-CREATE TABLE IF NOT EXISTS `tbl_bulan` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(128) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+CREATE TABLE `tbl_bulan` (
+  `id` int(11) NOT NULL,
+  `name` varchar(128) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_bulan`
+-- Dumping data untuk tabel `tbl_bulan`
 --
 
 INSERT INTO `tbl_bulan` (`id`, `name`) VALUES
@@ -199,24 +196,22 @@ INSERT INTO `tbl_bulan` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_camat`
+-- Struktur dari tabel `tbl_camat`
 --
 
-DROP TABLE IF EXISTS `tbl_camat`;
-CREATE TABLE IF NOT EXISTS `tbl_camat` (
-  `camat_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_camat` (
+  `camat_id` int(11) NOT NULL,
   `camat_nip` varchar(30) DEFAULT NULL,
   `camat_nama` varchar(70) DEFAULT NULL,
   `camat_jenkel` varchar(2) DEFAULT NULL,
   `camat_periode` varchar(80) DEFAULT NULL,
   `camat_mapel` varchar(120) DEFAULT NULL,
   `camat_photo` varchar(40) DEFAULT NULL,
-  `camat_tgl_input` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`camat_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+  `camat_tgl_input` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_camat`
+-- Dumping data untuk tabel `tbl_camat`
 --
 
 INSERT INTO `tbl_camat` (`camat_id`, `camat_nip`, `camat_nama`, `camat_jenkel`, `camat_periode`, `camat_mapel`, `camat_photo`, `camat_tgl_input`) VALUES
@@ -226,22 +221,20 @@ INSERT INTO `tbl_camat` (`camat_id`, `camat_nip`, `camat_nama`, `camat_jenkel`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_customer`
+-- Struktur dari tabel `tbl_customer`
 --
 
-DROP TABLE IF EXISTS `tbl_customer`;
-CREATE TABLE IF NOT EXISTS `tbl_customer` (
-  `CustomerID` int(15) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_customer` (
+  `CustomerID` int(15) NOT NULL,
   `CustomerName` varchar(100) NOT NULL,
   `Address` text NOT NULL,
   `City` varchar(100) NOT NULL,
   `PostalCode` varchar(200) NOT NULL,
-  `Country` varchar(100) NOT NULL,
-  PRIMARY KEY (`CustomerID`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  `Country` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_customer`
+-- Dumping data untuk tabel `tbl_customer`
 --
 
 INSERT INTO `tbl_customer` (`CustomerID`, `CustomerName`, `Address`, `City`, `PostalCode`, `Country`) VALUES
@@ -255,23 +248,19 @@ INSERT INTO `tbl_customer` (`CustomerID`, `CustomerName`, `Address`, `City`, `Po
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_dataekbang`
+-- Struktur dari tabel `tbl_dataekbang`
 --
 
-DROP TABLE IF EXISTS `tbl_dataekbang`;
-CREATE TABLE IF NOT EXISTS `tbl_dataekbang` (
-  `dataekbang_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_dataekbang` (
+  `dataekbang_id` int(11) NOT NULL,
   `dataekbang_nama` varchar(50) NOT NULL,
   `dataekbang_author` varchar(60) NOT NULL,
   `dataekbang_pengguna_id` int(11) NOT NULL,
-  `dataekbang_count` int(11) NOT NULL,
-  PRIMARY KEY (`dataekbang_id`),
-  KEY `dataekbang_pengguna_id` (`dataekbang_pengguna_id`),
-  KEY `dataekbang_nama` (`dataekbang_nama`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+  `dataekbang_count` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_dataekbang`
+-- Dumping data untuk tabel `tbl_dataekbang`
 --
 
 INSERT INTO `tbl_dataekbang` (`dataekbang_id`, `dataekbang_nama`, `dataekbang_author`, `dataekbang_pengguna_id`, `dataekbang_count`) VALUES
@@ -283,23 +272,19 @@ INSERT INTO `tbl_dataekbang` (`dataekbang_id`, `dataekbang_nama`, `dataekbang_au
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_datakesra`
+-- Struktur dari tabel `tbl_datakesra`
 --
 
-DROP TABLE IF EXISTS `tbl_datakesra`;
-CREATE TABLE IF NOT EXISTS `tbl_datakesra` (
-  `datakesra_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_datakesra` (
+  `datakesra_id` int(11) NOT NULL,
   `datakesra_nama` varchar(50) NOT NULL,
   `datakesra_author` varchar(60) NOT NULL,
   `datakesra_pengguna_id` int(11) NOT NULL,
-  `datakesra_count` int(11) NOT NULL,
-  PRIMARY KEY (`datakesra_id`),
-  KEY `dataekbang_pengguna_id` (`datakesra_pengguna_id`),
-  KEY `dataekbang_nama` (`datakesra_nama`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+  `datakesra_count` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_datakesra`
+-- Dumping data untuk tabel `tbl_datakesra`
 --
 
 INSERT INTO `tbl_datakesra` (`datakesra_id`, `datakesra_nama`, `datakesra_author`, `datakesra_pengguna_id`, `datakesra_count`) VALUES
@@ -309,23 +294,19 @@ INSERT INTO `tbl_datakesra` (`datakesra_id`, `datakesra_nama`, `datakesra_author
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_datapem`
+-- Struktur dari tabel `tbl_datapem`
 --
 
-DROP TABLE IF EXISTS `tbl_datapem`;
-CREATE TABLE IF NOT EXISTS `tbl_datapem` (
-  `datapem_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_datapem` (
+  `datapem_id` int(11) NOT NULL,
   `datapem_nama` varchar(50) NOT NULL,
   `datapem_author` varchar(60) NOT NULL,
   `datapem_pengguna_id` int(11) NOT NULL,
-  `datapem_count` int(11) NOT NULL,
-  PRIMARY KEY (`datapem_id`),
-  KEY `dataekbang_pengguna_id` (`datapem_pengguna_id`),
-  KEY `dataekbang_nama` (`datapem_nama`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+  `datapem_count` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_datapem`
+-- Dumping data untuk tabel `tbl_datapem`
 --
 
 INSERT INTO `tbl_datapem` (`datapem_id`, `datapem_nama`, `datapem_author`, `datapem_pengguna_id`, `datapem_count`) VALUES
@@ -336,23 +317,19 @@ INSERT INTO `tbl_datapem` (`datapem_id`, `datapem_nama`, `datapem_author`, `data
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_datatrantib`
+-- Struktur dari tabel `tbl_datatrantib`
 --
 
-DROP TABLE IF EXISTS `tbl_datatrantib`;
-CREATE TABLE IF NOT EXISTS `tbl_datatrantib` (
-  `datatrantib_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_datatrantib` (
+  `datatrantib_id` int(11) NOT NULL,
   `datatrantib_nama` varchar(50) NOT NULL,
   `datatrantib_author` varchar(60) NOT NULL,
   `datatrantib_pengguna_id` int(11) NOT NULL,
-  `datatrantib_count` int(11) NOT NULL,
-  PRIMARY KEY (`datatrantib_id`),
-  KEY `dataekbang_pengguna_id` (`datatrantib_pengguna_id`),
-  KEY `dataekbang_nama` (`datatrantib_nama`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+  `datatrantib_count` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_datatrantib`
+-- Dumping data untuk tabel `tbl_datatrantib`
 --
 
 INSERT INTO `tbl_datatrantib` (`datatrantib_id`, `datatrantib_nama`, `datatrantib_author`, `datatrantib_pengguna_id`, `datatrantib_count`) VALUES
@@ -363,12 +340,11 @@ INSERT INTO `tbl_datatrantib` (`datatrantib_id`, `datatrantib_nama`, `datatranti
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_ekbang`
+-- Struktur dari tabel `tbl_ekbang`
 --
 
-DROP TABLE IF EXISTS `tbl_ekbang`;
-CREATE TABLE IF NOT EXISTS `tbl_ekbang` (
-  `ekbang_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_ekbang` (
+  `ekbang_id` int(11) NOT NULL,
   `ekbang_judul` varchar(60) NOT NULL,
   `ekbang_dataekbang_id` int(11) DEFAULT NULL,
   `ekbang_hbt` int(11) NOT NULL,
@@ -378,14 +354,11 @@ CREATE TABLE IF NOT EXISTS `tbl_ekbang` (
   `ekbang_tomsel` int(11) NOT NULL,
   `ekbang_total` int(11) NOT NULL,
   `ekbang_pengguna_id` int(11) NOT NULL,
-  `ekbang_author` varchar(60) NOT NULL,
-  PRIMARY KEY (`ekbang_id`),
-  KEY `ek_dataek_id` (`ekbang_dataekbang_id`),
-  KEY `ekbang_pengguna_id` (`ekbang_pengguna_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
+  `ekbang_author` varchar(60) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_ekbang`
+-- Dumping data untuk tabel `tbl_ekbang`
 --
 
 INSERT INTO `tbl_ekbang` (`ekbang_id`, `ekbang_judul`, `ekbang_dataekbang_id`, `ekbang_hbt`, `ekbang_lib`, `ekbang_tld`, `ekbang_tom`, `ekbang_tomsel`, `ekbang_total`, `ekbang_pengguna_id`, `ekbang_author`) VALUES
@@ -396,22 +369,19 @@ INSERT INTO `tbl_ekbang` (`ekbang_id`, `ekbang_judul`, `ekbang_dataekbang_id`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_ektp`
+-- Struktur dari tabel `tbl_ektp`
 --
 
-DROP TABLE IF EXISTS `tbl_ektp`;
-CREATE TABLE IF NOT EXISTS `tbl_ektp` (
-  `ektp_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_ektp` (
+  `ektp_id` int(11) NOT NULL,
   `ektp_kelurahan_id` int(11) NOT NULL,
   `ektp_judul` varchar(50) NOT NULL,
   `ektp_alamat` varchar(50) NOT NULL,
-  `ektp_ket` varchar(100) NOT NULL,
-  PRIMARY KEY (`ektp_id`),
-  KEY `ektp_kelurahan_id` (`ektp_kelurahan_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+  `ektp_ket` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_ektp`
+-- Dumping data untuk tabel `tbl_ektp`
 --
 
 INSERT INTO `tbl_ektp` (`ektp_id`, `ektp_kelurahan_id`, `ektp_judul`, `ektp_alamat`, `ektp_ket`) VALUES
@@ -423,23 +393,21 @@ INSERT INTO `tbl_ektp` (`ektp_id`, `ektp_kelurahan_id`, `ektp_judul`, `ektp_alam
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_files`
+-- Struktur dari tabel `tbl_files`
 --
 
-DROP TABLE IF EXISTS `tbl_files`;
-CREATE TABLE IF NOT EXISTS `tbl_files` (
-  `file_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_files` (
+  `file_id` int(11) NOT NULL,
   `file_judul` varchar(120) DEFAULT NULL,
   `file_deskripsi` text,
   `file_tanggal` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `file_oleh` varchar(60) DEFAULT NULL,
   `file_download` int(11) DEFAULT '0',
-  `file_data` varchar(120) DEFAULT NULL,
-  PRIMARY KEY (`file_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `file_data` varchar(120) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_files`
+-- Dumping data untuk tabel `tbl_files`
 --
 
 INSERT INTO `tbl_files` (`file_id`, `file_judul`, `file_deskripsi`, `file_tanggal`, `file_oleh`, `file_download`, `file_data`) VALUES
@@ -448,25 +416,21 @@ INSERT INTO `tbl_files` (`file_id`, `file_judul`, `file_deskripsi`, `file_tangga
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_galeri`
+-- Struktur dari tabel `tbl_galeri`
 --
 
-DROP TABLE IF EXISTS `tbl_galeri`;
-CREATE TABLE IF NOT EXISTS `tbl_galeri` (
-  `galeri_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_galeri` (
+  `galeri_id` int(11) NOT NULL,
   `galeri_judul` varchar(60) DEFAULT NULL,
   `galeri_tanggal` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `galeri_gambar` varchar(40) DEFAULT NULL,
   `galeri_album_id` int(11) DEFAULT NULL,
   `galeri_pengguna_id` int(11) DEFAULT NULL,
-  `galeri_author` varchar(60) DEFAULT NULL,
-  PRIMARY KEY (`galeri_id`),
-  KEY `galeri_album_id` (`galeri_album_id`),
-  KEY `galeri_pengguna_id` (`galeri_pengguna_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+  `galeri_author` varchar(60) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_galeri`
+-- Dumping data untuk tabel `tbl_galeri`
 --
 
 INSERT INTO `tbl_galeri` (`galeri_id`, `galeri_judul`, `galeri_tanggal`, `galeri_gambar`, `galeri_album_id`, `galeri_pengguna_id`, `galeri_author`) VALUES
@@ -476,12 +440,11 @@ INSERT INTO `tbl_galeri` (`galeri_id`, `galeri_judul`, `galeri_tanggal`, `galeri
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_guru`
+-- Struktur dari tabel `tbl_guru`
 --
 
-DROP TABLE IF EXISTS `tbl_guru`;
-CREATE TABLE IF NOT EXISTS `tbl_guru` (
-  `guru_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_guru` (
+  `guru_id` int(11) NOT NULL,
   `guru_nip` varchar(30) DEFAULT NULL,
   `guru_nama` varchar(70) DEFAULT NULL,
   `guru_jenkel` varchar(2) DEFAULT NULL,
@@ -489,12 +452,11 @@ CREATE TABLE IF NOT EXISTS `tbl_guru` (
   `guru_tgl_lahir` varchar(80) DEFAULT NULL,
   `guru_mapel` varchar(120) DEFAULT NULL,
   `guru_photo` varchar(40) DEFAULT NULL,
-  `guru_tgl_input` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`guru_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+  `guru_tgl_input` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_guru`
+-- Dumping data untuk tabel `tbl_guru`
 --
 
 INSERT INTO `tbl_guru` (`guru_id`, `guru_nip`, `guru_nama`, `guru_jenkel`, `guru_tmp_lahir`, `guru_tgl_lahir`, `guru_mapel`, `guru_photo`, `guru_tgl_input`) VALUES
@@ -507,24 +469,22 @@ INSERT INTO `tbl_guru` (`guru_id`, `guru_nip`, `guru_nama`, `guru_jenkel`, `guru
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_hotel`
+-- Struktur dari tabel `tbl_hotel`
 --
 
-DROP TABLE IF EXISTS `tbl_hotel`;
-CREATE TABLE IF NOT EXISTS `tbl_hotel` (
-  `hotel_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_hotel` (
+  `hotel_id` int(11) NOT NULL,
   `hotel_nama` varchar(100) NOT NULL,
   `hotel_kel` varchar(100) NOT NULL,
   `hotel_alamat` varchar(100) NOT NULL,
   `hotel_pemilik` varchar(100) NOT NULL,
   `hotel_kontak` varchar(100) NOT NULL,
   `hotel_ijin` varchar(100) NOT NULL,
-  `hotel_ket` text NOT NULL,
-  PRIMARY KEY (`hotel_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `hotel_ket` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_hotel`
+-- Dumping data untuk tabel `tbl_hotel`
 --
 
 INSERT INTO `tbl_hotel` (`hotel_id`, `hotel_nama`, `hotel_kel`, `hotel_alamat`, `hotel_pemilik`, `hotel_kontak`, `hotel_ijin`, `hotel_ket`) VALUES
@@ -533,24 +493,22 @@ INSERT INTO `tbl_hotel` (`hotel_id`, `hotel_nama`, `hotel_kel`, `hotel_alamat`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_huangobotu`
+-- Struktur dari tabel `tbl_huangobotu`
 --
 
-DROP TABLE IF EXISTS `tbl_huangobotu`;
-CREATE TABLE IF NOT EXISTS `tbl_huangobotu` (
-  `huangobotu_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_huangobotu` (
+  `huangobotu_id` int(11) NOT NULL,
   `huangobotu_judul` varchar(100) NOT NULL,
   `huangobotu_isi` text NOT NULL,
   `huangobotu_gambar` varchar(5000) NOT NULL,
   `huangobotu_alamat` varchar(100) NOT NULL,
   `huangobotu_hp` varchar(100) NOT NULL,
   `huangobotu_lurah` varchar(100) NOT NULL,
-  `huangobotu_ket` varchar(100) NOT NULL,
-  PRIMARY KEY (`huangobotu_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+  `huangobotu_ket` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_huangobotu`
+-- Dumping data untuk tabel `tbl_huangobotu`
 --
 
 INSERT INTO `tbl_huangobotu` (`huangobotu_id`, `huangobotu_judul`, `huangobotu_isi`, `huangobotu_gambar`, `huangobotu_alamat`, `huangobotu_hp`, `huangobotu_lurah`, `huangobotu_ket`) VALUES
@@ -559,21 +517,19 @@ INSERT INTO `tbl_huangobotu` (`huangobotu_id`, `huangobotu_judul`, `huangobotu_i
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_ijin`
+-- Struktur dari tabel `tbl_ijin`
 --
 
-DROP TABLE IF EXISTS `tbl_ijin`;
-CREATE TABLE IF NOT EXISTS `tbl_ijin` (
-  `ijin_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_ijin` (
+  `ijin_id` int(11) NOT NULL,
   `ijin_judul` varchar(100) NOT NULL,
   `ijin_tanggal` date NOT NULL,
   `ijin_isi` text NOT NULL,
-  `ijin_gambar` varchar(10000) NOT NULL,
-  PRIMARY KEY (`ijin_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `ijin_gambar` varchar(10000) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_ijin`
+-- Dumping data untuk tabel `tbl_ijin`
 --
 
 INSERT INTO `tbl_ijin` (`ijin_id`, `ijin_judul`, `ijin_tanggal`, `ijin_isi`, `ijin_gambar`) VALUES
@@ -582,23 +538,21 @@ INSERT INTO `tbl_ijin` (`ijin_id`, `ijin_judul`, `ijin_tanggal`, `ijin_isi`, `ij
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_inbox`
+-- Struktur dari tabel `tbl_inbox`
 --
 
-DROP TABLE IF EXISTS `tbl_inbox`;
-CREATE TABLE IF NOT EXISTS `tbl_inbox` (
-  `inbox_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_inbox` (
+  `inbox_id` int(11) NOT NULL,
   `inbox_nama` varchar(40) DEFAULT NULL,
   `inbox_email` varchar(60) DEFAULT NULL,
   `inbox_kontak` varchar(20) DEFAULT NULL,
   `inbox_pesan` text,
   `inbox_tanggal` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `inbox_status` int(11) DEFAULT '1' COMMENT '1=Belum dilihat, 0=Telah dilihat',
-  PRIMARY KEY (`inbox_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+  `inbox_status` int(11) DEFAULT '1' COMMENT '1=Belum dilihat, 0=Telah dilihat'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_inbox`
+-- Dumping data untuk tabel `tbl_inbox`
 --
 
 INSERT INTO `tbl_inbox` (`inbox_id`, `inbox_nama`, `inbox_email`, `inbox_kontak`, `inbox_pesan`, `inbox_tanggal`, `inbox_status`) VALUES
@@ -607,19 +561,17 @@ INSERT INTO `tbl_inbox` (`inbox_id`, `inbox_nama`, `inbox_email`, `inbox_kontak`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_kategori`
+-- Struktur dari tabel `tbl_kategori`
 --
 
-DROP TABLE IF EXISTS `tbl_kategori`;
-CREATE TABLE IF NOT EXISTS `tbl_kategori` (
-  `kategori_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_kategori` (
+  `kategori_id` int(11) NOT NULL,
   `kategori_nama` varchar(30) DEFAULT NULL,
-  `kategori_tanggal` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`kategori_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+  `kategori_tanggal` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_kategori`
+-- Dumping data untuk tabel `tbl_kategori`
 --
 
 INSERT INTO `tbl_kategori` (`kategori_id`, `kategori_nama`, `kategori_tanggal`) VALUES
@@ -637,18 +589,16 @@ INSERT INTO `tbl_kategori` (`kategori_id`, `kategori_nama`, `kategori_tanggal`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_kelas`
+-- Struktur dari tabel `tbl_kelas`
 --
 
-DROP TABLE IF EXISTS `tbl_kelas`;
-CREATE TABLE IF NOT EXISTS `tbl_kelas` (
-  `kelas_id` int(11) NOT NULL AUTO_INCREMENT,
-  `kelas_nama` varchar(40) DEFAULT NULL,
-  PRIMARY KEY (`kelas_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+CREATE TABLE `tbl_kelas` (
+  `kelas_id` int(11) NOT NULL,
+  `kelas_nama` varchar(40) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_kelas`
+-- Dumping data untuk tabel `tbl_kelas`
 --
 
 INSERT INTO `tbl_kelas` (`kelas_id`, `kelas_nama`) VALUES
@@ -684,18 +634,16 @@ INSERT INTO `tbl_kelas` (`kelas_id`, `kelas_nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_kelurahan`
+-- Struktur dari tabel `tbl_kelurahan`
 --
 
-DROP TABLE IF EXISTS `tbl_kelurahan`;
-CREATE TABLE IF NOT EXISTS `tbl_kelurahan` (
-  `kelurahan_id` int(11) NOT NULL AUTO_INCREMENT,
-  `kelurahan_nama` varchar(20) NOT NULL,
-  PRIMARY KEY (`kelurahan_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+CREATE TABLE `tbl_kelurahan` (
+  `kelurahan_id` int(11) NOT NULL,
+  `kelurahan_nama` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_kelurahan`
+-- Dumping data untuk tabel `tbl_kelurahan`
 --
 
 INSERT INTO `tbl_kelurahan` (`kelurahan_id`, `kelurahan_nama`) VALUES
@@ -708,12 +656,11 @@ INSERT INTO `tbl_kelurahan` (`kelurahan_id`, `kelurahan_nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_kesra`
+-- Struktur dari tabel `tbl_kesra`
 --
 
-DROP TABLE IF EXISTS `tbl_kesra`;
-CREATE TABLE IF NOT EXISTS `tbl_kesra` (
-  `kesra_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_kesra` (
+  `kesra_id` int(11) NOT NULL,
   `kesra_judul` varchar(60) NOT NULL,
   `kesra_datakesra_id` int(11) DEFAULT NULL,
   `kesra_hbt` int(11) NOT NULL,
@@ -723,14 +670,11 @@ CREATE TABLE IF NOT EXISTS `tbl_kesra` (
   `kesra_tomsel` int(11) NOT NULL,
   `kesra_total` int(11) NOT NULL,
   `kesra_pengguna_id` int(11) NOT NULL,
-  `kesra_author` varchar(60) NOT NULL,
-  PRIMARY KEY (`kesra_id`),
-  KEY `ek_dataek_id` (`kesra_datakesra_id`),
-  KEY `ekbang_pengguna_id` (`kesra_pengguna_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+  `kesra_author` varchar(60) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_kesra`
+-- Dumping data untuk tabel `tbl_kesra`
 --
 
 INSERT INTO `tbl_kesra` (`kesra_id`, `kesra_judul`, `kesra_datakesra_id`, `kesra_hbt`, `kesra_lib`, `kesra_tld`, `kesra_tom`, `kesra_tomsel`, `kesra_total`, `kesra_pengguna_id`, `kesra_author`) VALUES
@@ -745,25 +689,22 @@ INSERT INTO `tbl_kesra` (`kesra_id`, `kesra_judul`, `kesra_datakesra_id`, `kesra
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_komentar`
+-- Struktur dari tabel `tbl_komentar`
 --
 
-DROP TABLE IF EXISTS `tbl_komentar`;
-CREATE TABLE IF NOT EXISTS `tbl_komentar` (
-  `komentar_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_komentar` (
+  `komentar_id` int(11) NOT NULL,
   `komentar_nama` varchar(30) DEFAULT NULL,
   `komentar_email` varchar(50) DEFAULT NULL,
   `komentar_isi` varchar(120) DEFAULT NULL,
   `komentar_tanggal` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `komentar_status` varchar(2) DEFAULT NULL,
   `komentar_tulisan_id` int(11) DEFAULT NULL,
-  `komentar_parent` int(11) DEFAULT '0',
-  PRIMARY KEY (`komentar_id`),
-  KEY `komentar_tulisan_id` (`komentar_tulisan_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+  `komentar_parent` int(11) DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_komentar`
+-- Dumping data untuk tabel `tbl_komentar`
 --
 
 INSERT INTO `tbl_komentar` (`komentar_id`, `komentar_nama`, `komentar_email`, `komentar_isi`, `komentar_tanggal`, `komentar_status`, `komentar_tulisan_id`, `komentar_parent`) VALUES
@@ -778,12 +719,11 @@ INSERT INTO `tbl_komentar` (`komentar_id`, `komentar_nama`, `komentar_email`, `k
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_lapen`
+-- Struktur dari tabel `tbl_lapen`
 --
 
-DROP TABLE IF EXISTS `tbl_lapen`;
-CREATE TABLE IF NOT EXISTS `tbl_lapen` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_lapen` (
+  `id` int(11) NOT NULL,
   `tanggal` date NOT NULL,
   `bulan` int(11) NOT NULL,
   `kelurahan` varchar(128) NOT NULL,
@@ -804,12 +744,11 @@ CREATE TABLE IF NOT EXISTS `tbl_lapen` (
   `lppergi` int(11) NOT NULL,
   `lakhir` int(11) NOT NULL,
   `pakhir` int(11) NOT NULL,
-  `lpakhir` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+  `lpakhir` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_lapen`
+-- Dumping data untuk tabel `tbl_lapen`
 --
 
 INSERT INTO `tbl_lapen` (`id`, `tanggal`, `bulan`, `kelurahan`, `lawal`, `pawal`, `lpawal`, `llahir`, `plahir`, `lplahir`, `lmati`, `pmati`, `lpmati`, `ldatang`, `pdatang`, `lpdatang`, `lpergi`, `ppergi`, `lppergi`, `lakhir`, `pakhir`, `lpakhir`) VALUES
@@ -824,23 +763,20 @@ INSERT INTO `tbl_lapen` (`id`, `tanggal`, `bulan`, `kelurahan`, `lawal`, `pawal`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_layanan`
+-- Struktur dari tabel `tbl_layanan`
 --
 
-DROP TABLE IF EXISTS `tbl_layanan`;
-CREATE TABLE IF NOT EXISTS `tbl_layanan` (
-  `layanan_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_layanan` (
+  `layanan_id` int(11) NOT NULL,
   `layanan_judul` varchar(50) NOT NULL,
   `layanan_pemohon` varchar(50) NOT NULL,
   `layanan_tanggal` date NOT NULL,
   `layanan_kelurahan_id` int(11) NOT NULL,
-  `layanan_ket` varchar(50) NOT NULL,
-  PRIMARY KEY (`layanan_id`),
-  KEY `layanan_kelurahan_id` (`layanan_kelurahan_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+  `layanan_ket` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_layanan`
+-- Dumping data untuk tabel `tbl_layanan`
 --
 
 INSERT INTO `tbl_layanan` (`layanan_id`, `layanan_judul`, `layanan_pemohon`, `layanan_tanggal`, `layanan_kelurahan_id`, `layanan_ket`) VALUES
@@ -849,24 +785,22 @@ INSERT INTO `tbl_layanan` (`layanan_id`, `layanan_judul`, `layanan_pemohon`, `la
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_libuo`
+-- Struktur dari tabel `tbl_libuo`
 --
 
-DROP TABLE IF EXISTS `tbl_libuo`;
-CREATE TABLE IF NOT EXISTS `tbl_libuo` (
-  `libuo_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_libuo` (
+  `libuo_id` int(11) NOT NULL,
   `libuo_judul` varchar(100) NOT NULL,
   `libuo_isi` text NOT NULL,
   `libuo_gambar` varchar(5000) NOT NULL,
   `libuo_alamat` varchar(100) NOT NULL,
   `libuo_hp` varchar(100) NOT NULL,
   `libuo_lurah` varchar(100) NOT NULL,
-  `libuo_ket` varchar(100) NOT NULL,
-  PRIMARY KEY (`libuo_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `libuo_ket` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_libuo`
+-- Dumping data untuk tabel `tbl_libuo`
 --
 
 INSERT INTO `tbl_libuo` (`libuo_id`, `libuo_judul`, `libuo_isi`, `libuo_gambar`, `libuo_alamat`, `libuo_hp`, `libuo_lurah`, `libuo_ket`) VALUES
@@ -875,41 +809,36 @@ INSERT INTO `tbl_libuo` (`libuo_id`, `libuo_judul`, `libuo_isi`, `libuo_gambar`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_log_aktivitas`
+-- Struktur dari tabel `tbl_log_aktivitas`
 --
 
-DROP TABLE IF EXISTS `tbl_log_aktivitas`;
-CREATE TABLE IF NOT EXISTS `tbl_log_aktivitas` (
-  `log_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_log_aktivitas` (
+  `log_id` int(11) NOT NULL,
   `log_nama` text,
   `log_tanggal` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `log_ip` varchar(20) DEFAULT NULL,
   `log_pengguna_id` int(11) DEFAULT NULL,
   `log_icon` blob,
-  `log_jenis_icon` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`log_id`),
-  KEY `log_pengguna_id` (`log_pengguna_id`)
+  `log_jenis_icon` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_lpm`
+-- Struktur dari tabel `tbl_lpm`
 --
 
-DROP TABLE IF EXISTS `tbl_lpm`;
-CREATE TABLE IF NOT EXISTS `tbl_lpm` (
-  `lpm_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_lpm` (
+  `lpm_id` int(11) NOT NULL,
   `lpm_nama` varchar(100) NOT NULL,
   `lpm_ketua` varchar(100) NOT NULL,
   `lpm_alamat` varchar(100) NOT NULL,
   `lpm_telepon` varchar(100) NOT NULL,
-  `lpm_ket` varchar(100) NOT NULL,
-  PRIMARY KEY (`lpm_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+  `lpm_ket` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_lpm`
+-- Dumping data untuk tabel `tbl_lpm`
 --
 
 INSERT INTO `tbl_lpm` (`lpm_id`, `lpm_nama`, `lpm_ketua`, `lpm_alamat`, `lpm_telepon`, `lpm_ket`) VALUES
@@ -919,20 +848,18 @@ INSERT INTO `tbl_lpm` (`lpm_id`, `lpm_nama`, `lpm_ketua`, `lpm_alamat`, `lpm_tel
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_nonijin`
+-- Struktur dari tabel `tbl_nonijin`
 --
 
-DROP TABLE IF EXISTS `tbl_nonijin`;
-CREATE TABLE IF NOT EXISTS `tbl_nonijin` (
-  `nonijin_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_nonijin` (
+  `nonijin_id` int(11) NOT NULL,
   `nonijin_judul` varchar(100) NOT NULL,
   `nonijin_isi` text NOT NULL,
-  `nonijin_ket` varchar(50) NOT NULL,
-  PRIMARY KEY (`nonijin_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  `nonijin_ket` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_nonijin`
+-- Dumping data untuk tabel `tbl_nonijin`
 --
 
 INSERT INTO `tbl_nonijin` (`nonijin_id`, `nonijin_judul`, `nonijin_isi`, `nonijin_ket`) VALUES
@@ -941,20 +868,18 @@ INSERT INTO `tbl_nonijin` (`nonijin_id`, `nonijin_judul`, `nonijin_isi`, `noniji
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_nopen`
+-- Struktur dari tabel `tbl_nopen`
 --
 
-DROP TABLE IF EXISTS `tbl_nopen`;
-CREATE TABLE IF NOT EXISTS `tbl_nopen` (
-  `nopen_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_nopen` (
+  `nopen_id` int(11) NOT NULL,
   `nopen_user` varchar(10000) NOT NULL,
   `nopen_hp` varchar(100) NOT NULL,
-  `nopen_ket` varchar(1000) NOT NULL,
-  PRIMARY KEY (`nopen_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+  `nopen_ket` varchar(1000) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_nopen`
+-- Dumping data untuk tabel `tbl_nopen`
 --
 
 INSERT INTO `tbl_nopen` (`nopen_id`, `nopen_user`, `nopen_hp`, `nopen_ket`) VALUES
@@ -966,25 +891,22 @@ INSERT INTO `tbl_nopen` (`nopen_id`, `nopen_user`, `nopen_hp`, `nopen_ket`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_online`
+-- Struktur dari tabel `tbl_online`
 --
 
-DROP TABLE IF EXISTS `tbl_online`;
-CREATE TABLE IF NOT EXISTS `tbl_online` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_session` varchar(32) NOT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE `tbl_online` (
+  `id` int(11) NOT NULL,
+  `id_session` varchar(32) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_pbb`
+-- Struktur dari tabel `tbl_pbb`
 --
 
-DROP TABLE IF EXISTS `tbl_pbb`;
-CREATE TABLE IF NOT EXISTS `tbl_pbb` (
-  `pbb_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_pbb` (
+  `pbb_id` int(11) NOT NULL,
   `pbb_kode` int(100) NOT NULL,
   `pbb_kelurahan` varchar(100) NOT NULL,
   `pbb_target` int(255) NOT NULL,
@@ -993,12 +915,11 @@ CREATE TABLE IF NOT EXISTS `tbl_pbb` (
   `pbb_total` int(255) NOT NULL,
   `pbb_persen` int(100) NOT NULL,
   `pbb_tanggal` date NOT NULL,
-  `pbb_rank` int(10) NOT NULL,
-  PRIMARY KEY (`pbb_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  `pbb_rank` int(10) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_pbb`
+-- Dumping data untuk tabel `tbl_pbb`
 --
 
 INSERT INTO `tbl_pbb` (`pbb_id`, `pbb_kode`, `pbb_kelurahan`, `pbb_target`, `pbb_realisasi`, `pbb_denda`, `pbb_total`, `pbb_persen`, `pbb_tanggal`, `pbb_rank`) VALUES
@@ -1008,12 +929,11 @@ INSERT INTO `tbl_pbb` (`pbb_id`, `pbb_kode`, `pbb_kelurahan`, `pbb_target`, `pbb
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_pem`
+-- Struktur dari tabel `tbl_pem`
 --
 
-DROP TABLE IF EXISTS `tbl_pem`;
-CREATE TABLE IF NOT EXISTS `tbl_pem` (
-  `pem_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_pem` (
+  `pem_id` int(11) NOT NULL,
   `pem_judul` varchar(60) NOT NULL,
   `pem_datapem_id` int(11) DEFAULT NULL,
   `pem_hbt` int(11) NOT NULL,
@@ -1023,14 +943,11 @@ CREATE TABLE IF NOT EXISTS `tbl_pem` (
   `pem_tomsel` int(11) NOT NULL,
   `pem_total` int(11) NOT NULL,
   `pem_pengguna_id` int(11) NOT NULL,
-  `pem_author` varchar(60) NOT NULL,
-  PRIMARY KEY (`pem_id`),
-  KEY `ek_dataek_id` (`pem_datapem_id`),
-  KEY `ekbang_pengguna_id` (`pem_pengguna_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+  `pem_author` varchar(60) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_pem`
+-- Dumping data untuk tabel `tbl_pem`
 --
 
 INSERT INTO `tbl_pem` (`pem_id`, `pem_judul`, `pem_datapem_id`, `pem_hbt`, `pem_lib`, `pem_tld`, `pem_tom`, `pem_tomsel`, `pem_total`, `pem_pengguna_id`, `pem_author`) VALUES
@@ -1041,12 +958,11 @@ INSERT INTO `tbl_pem` (`pem_id`, `pem_judul`, `pem_datapem_id`, `pem_hbt`, `pem_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_penduduk`
+-- Struktur dari tabel `tbl_penduduk`
 --
 
-DROP TABLE IF EXISTS `tbl_penduduk`;
-CREATE TABLE IF NOT EXISTS `tbl_penduduk` (
-  `id` int(100) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_penduduk` (
+  `id` int(100) NOT NULL,
   `nik` varchar(100) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `jk` varchar(100) NOT NULL,
@@ -1072,19 +988,17 @@ CREATE TABLE IF NOT EXISTS `tbl_penduduk` (
   `no_kel` int(100) NOT NULL,
   `nama_kel` varchar(100) NOT NULL,
   `rw` int(10) NOT NULL,
-  `rt` int(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `rt` int(10) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_pengguna`
+-- Struktur dari tabel `tbl_pengguna`
 --
 
-DROP TABLE IF EXISTS `tbl_pengguna`;
-CREATE TABLE IF NOT EXISTS `tbl_pengguna` (
-  `pengguna_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_pengguna` (
+  `pengguna_id` int(11) NOT NULL,
   `pengguna_nama` varchar(50) DEFAULT NULL,
   `pengguna_moto` varchar(100) DEFAULT NULL,
   `pengguna_jenkel` varchar(2) DEFAULT NULL,
@@ -1100,12 +1014,11 @@ CREATE TABLE IF NOT EXISTS `tbl_pengguna` (
   `pengguna_status` int(2) DEFAULT '1',
   `pengguna_level` varchar(3) DEFAULT NULL,
   `pengguna_register` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `pengguna_photo` varchar(40) DEFAULT NULL,
-  PRIMARY KEY (`pengguna_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+  `pengguna_photo` varchar(40) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_pengguna`
+-- Dumping data untuk tabel `tbl_pengguna`
 --
 
 INSERT INTO `tbl_pengguna` (`pengguna_id`, `pengguna_nama`, `pengguna_moto`, `pengguna_jenkel`, `pengguna_username`, `pengguna_password`, `pengguna_tentang`, `pengguna_email`, `pengguna_nohp`, `pengguna_facebook`, `pengguna_twitter`, `pengguna_linkdin`, `pengguna_google_plus`, `pengguna_status`, `pengguna_level`, `pengguna_register`, `pengguna_photo`) VALUES
@@ -1116,21 +1029,19 @@ INSERT INTO `tbl_pengguna` (`pengguna_id`, `pengguna_nama`, `pengguna_moto`, `pe
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_pengumuman`
+-- Struktur dari tabel `tbl_pengumuman`
 --
 
-DROP TABLE IF EXISTS `tbl_pengumuman`;
-CREATE TABLE IF NOT EXISTS `tbl_pengumuman` (
-  `pengumuman_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_pengumuman` (
+  `pengumuman_id` int(11) NOT NULL,
   `pengumuman_judul` varchar(150) DEFAULT NULL,
   `pengumuman_deskripsi` text,
   `pengumuman_tanggal` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `pengumuman_author` varchar(60) DEFAULT NULL,
-  PRIMARY KEY (`pengumuman_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  `pengumuman_author` varchar(60) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_pengumuman`
+-- Dumping data untuk tabel `tbl_pengumuman`
 --
 
 INSERT INTO `tbl_pengumuman` (`pengumuman_id`, `pengumuman_judul`, `pengumuman_deskripsi`, `pengumuman_tanggal`, `pengumuman_author`) VALUES
@@ -1139,22 +1050,20 @@ INSERT INTO `tbl_pengumuman` (`pengumuman_id`, `pengumuman_judul`, `pengumuman_d
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_pengunjung`
+-- Struktur dari tabel `tbl_pengunjung`
 --
 
-DROP TABLE IF EXISTS `tbl_pengunjung`;
-CREATE TABLE IF NOT EXISTS `tbl_pengunjung` (
-  `pengunjung_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_pengunjung` (
+  `pengunjung_id` int(11) NOT NULL,
   `pengunjung_tanggal` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `pengunjung_ip` varchar(40) DEFAULT NULL,
   `pengunjung_perangkat` varchar(100) DEFAULT NULL,
   `hits` int(11) NOT NULL DEFAULT '1',
-  `online` varchar(255) NOT NULL,
-  PRIMARY KEY (`pengunjung_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1031 DEFAULT CHARSET=latin1;
+  `online` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_pengunjung`
+-- Dumping data untuk tabel `tbl_pengunjung`
 --
 
 INSERT INTO `tbl_pengunjung` (`pengunjung_id`, `pengunjung_tanggal`, `pengunjung_ip`, `pengunjung_perangkat`, `hits`, `online`) VALUES
@@ -1258,29 +1167,35 @@ INSERT INTO `tbl_pengunjung` (`pengunjung_id`, `pengunjung_tanggal`, `pengunjung
 (1027, '2019-08-18 06:48:33', '::1', 'Chrome', 1, ''),
 (1028, '2019-09-19 08:34:26', '::1', 'Chrome', 1, ''),
 (1029, '2019-09-20 23:54:04', '::1', 'Chrome', 1, ''),
-(1030, '2019-09-22 02:45:04', '::1', 'Chrome', 1, '');
+(1030, '2019-09-22 02:45:04', '::1', 'Chrome', 1, ''),
+(1031, '2019-09-23 02:50:22', '::1', 'Chrome', 1, ''),
+(1032, '2019-10-02 01:31:01', '::1', 'Chrome', 1, ''),
+(1033, '2019-10-10 01:47:55', '::1', 'Chrome', 1, ''),
+(1034, '2019-10-11 01:30:16', '::1', 'Chrome', 1, ''),
+(1035, '2019-10-21 00:41:58', '::1', 'Chrome', 1, ''),
+(1036, '2019-11-28 02:50:35', '::1', 'Chrome', 1, ''),
+(1037, '2019-12-03 21:13:22', '::1', 'Chrome', 1, ''),
+(1038, '2019-12-05 00:45:49', '::1', 'Chrome', 1, '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_perum`
+-- Struktur dari tabel `tbl_perum`
 --
 
-DROP TABLE IF EXISTS `tbl_perum`;
-CREATE TABLE IF NOT EXISTS `tbl_perum` (
-  `perum_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_perum` (
+  `perum_id` int(11) NOT NULL,
   `perum_nama` varchar(100) NOT NULL,
   `perum_kelurahan` varchar(100) NOT NULL,
   `perum_tahun` varchar(100) NOT NULL,
   `perum_alamat` varchar(100) NOT NULL,
   `perum_developer` varchar(100) NOT NULL,
   `perum_jumlah` int(11) NOT NULL,
-  `perum_ket` varchar(100) NOT NULL,
-  PRIMARY KEY (`perum_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `perum_ket` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_perum`
+-- Dumping data untuk tabel `tbl_perum`
 --
 
 INSERT INTO `tbl_perum` (`perum_id`, `perum_nama`, `perum_kelurahan`, `perum_tahun`, `perum_alamat`, `perum_developer`, `perum_jumlah`, `perum_ket`) VALUES
@@ -1289,21 +1204,19 @@ INSERT INTO `tbl_perum` (`perum_id`, `perum_nama`, `perum_kelurahan`, `perum_tah
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_peta`
+-- Struktur dari tabel `tbl_peta`
 --
 
-DROP TABLE IF EXISTS `tbl_peta`;
-CREATE TABLE IF NOT EXISTS `tbl_peta` (
-  `peta_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_peta` (
+  `peta_id` int(11) NOT NULL,
   `peta_judul` varchar(100) NOT NULL,
   `peta_tanggal` date NOT NULL,
   `peta_isi` text NOT NULL,
-  `peta_gambar` varchar(10000) NOT NULL,
-  PRIMARY KEY (`peta_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `peta_gambar` varchar(10000) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_peta`
+-- Dumping data untuk tabel `tbl_peta`
 --
 
 INSERT INTO `tbl_peta` (`peta_id`, `peta_judul`, `peta_tanggal`, `peta_isi`, `peta_gambar`) VALUES
@@ -1312,21 +1225,19 @@ INSERT INTO `tbl_peta` (`peta_id`, `peta_judul`, `peta_tanggal`, `peta_isi`, `pe
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_poll`
+-- Struktur dari tabel `tbl_poll`
 --
 
-DROP TABLE IF EXISTS `tbl_poll`;
-CREATE TABLE IF NOT EXISTS `tbl_poll` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_poll` (
+  `id` int(11) NOT NULL,
   `Sbaik` int(11) NOT NULL,
   `baik` int(11) NOT NULL,
   `cukup` int(11) NOT NULL,
-  `kurang` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+  `kurang` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_poll`
+-- Dumping data untuk tabel `tbl_poll`
 --
 
 INSERT INTO `tbl_poll` (`id`, `Sbaik`, `baik`, `cukup`, `kurang`) VALUES
@@ -1342,22 +1253,19 @@ INSERT INTO `tbl_poll` (`id`, `Sbaik`, `baik`, `cukup`, `kurang`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_potensi`
+-- Struktur dari tabel `tbl_potensi`
 --
 
-DROP TABLE IF EXISTS `tbl_potensi`;
-CREATE TABLE IF NOT EXISTS `tbl_potensi` (
-  `potensi_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_potensi` (
+  `potensi_id` int(11) NOT NULL,
   `potensi_kelurahan_id` int(11) NOT NULL,
   `potensi_judul` varchar(50) NOT NULL,
   `potensi_gambar` varchar(5000) NOT NULL,
-  `potensi_ket` varchar(100) NOT NULL,
-  PRIMARY KEY (`potensi_id`),
-  KEY `potensi_kelurahan_id` (`potensi_kelurahan_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `potensi_ket` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_potensi`
+-- Dumping data untuk tabel `tbl_potensi`
 --
 
 INSERT INTO `tbl_potensi` (`potensi_id`, `potensi_kelurahan_id`, `potensi_judul`, `potensi_gambar`, `potensi_ket`) VALUES
@@ -1366,21 +1274,19 @@ INSERT INTO `tbl_potensi` (`potensi_id`, `potensi_kelurahan_id`, `potensi_judul`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_sejarah`
+-- Struktur dari tabel `tbl_sejarah`
 --
 
-DROP TABLE IF EXISTS `tbl_sejarah`;
-CREATE TABLE IF NOT EXISTS `tbl_sejarah` (
-  `sejarah_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_sejarah` (
+  `sejarah_id` int(11) NOT NULL,
   `sejarah_judul` varchar(100) NOT NULL,
   `sejarah_tanggal` date NOT NULL,
   `sejarah_isi` text NOT NULL,
-  `sejarah_gambar` varchar(10000) NOT NULL,
-  PRIMARY KEY (`sejarah_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+  `sejarah_gambar` varchar(10000) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_sejarah`
+-- Dumping data untuk tabel `tbl_sejarah`
 --
 
 INSERT INTO `tbl_sejarah` (`sejarah_id`, `sejarah_judul`, `sejarah_tanggal`, `sejarah_isi`, `sejarah_gambar`) VALUES
@@ -1389,49 +1295,43 @@ INSERT INTO `tbl_sejarah` (`sejarah_id`, `sejarah_judul`, `sejarah_tanggal`, `se
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_service`
+-- Struktur dari tabel `tbl_service`
 --
 
-DROP TABLE IF EXISTS `tbl_service`;
-CREATE TABLE IF NOT EXISTS `tbl_service` (
-  `service_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_service` (
+  `service_id` int(11) NOT NULL,
   `service_judul` varchar(30) NOT NULL,
   `service_gambar` varchar(2500) NOT NULL,
-  `service_metod` varchar(20) NOT NULL,
-  PRIMARY KEY (`service_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  `service_metod` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_service`
+-- Dumping data untuk tabel `tbl_service`
 --
 
 INSERT INTO `tbl_service` (`service_id`, `service_judul`, `service_gambar`, `service_metod`) VALUES
 (1, 'Layanan Perijinan', 'bdfbc455fa6ec2712459c50ebc29d5ff.png', 'ijin'),
 (2, 'Layanan Non Perijinan', '8bbede6e9b14b5cb7828c9421b9cb8d2.png', 'nonijin'),
 (3, 'PBB', '40192424183291205044673d11b42cd4.png', 'pbb'),
-(4, 'E-KTP', '5da294144ed8f150976c8051de9899e3.png', 'ektp'),
-(5, 'Cek Layanan on Proses', '3819297575c1206b7be7be6b1ec32970.jpg', 'layanan'),
 (6, 'Berita', 'd1776e6ff4e00ce6f8bfe71bcac6c285.png', 'blog');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_siswa`
+-- Struktur dari tabel `tbl_siswa`
 --
 
-DROP TABLE IF EXISTS `tbl_siswa`;
-CREATE TABLE IF NOT EXISTS `tbl_siswa` (
-  `siswa_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_siswa` (
+  `siswa_id` int(11) NOT NULL,
   `siswa_nis` varchar(20) DEFAULT NULL,
   `siswa_nama` varchar(70) DEFAULT NULL,
   `siswa_jenkel` varchar(2) DEFAULT NULL,
   `siswa_kelas_id` int(11) DEFAULT NULL,
-  `siswa_photo` varchar(40) DEFAULT NULL,
-  PRIMARY KEY (`siswa_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `siswa_photo` varchar(40) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_siswa`
+-- Dumping data untuk tabel `tbl_siswa`
 --
 
 INSERT INTO `tbl_siswa` (`siswa_id`, `siswa_nis`, `siswa_nama`, `siswa_jenkel`, `siswa_kelas_id`, `siswa_photo`) VALUES
@@ -1440,48 +1340,44 @@ INSERT INTO `tbl_siswa` (`siswa_id`, `siswa_nis`, `siswa_nama`, `siswa_jenkel`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_slider`
+-- Struktur dari tabel `tbl_slider`
 --
 
-DROP TABLE IF EXISTS `tbl_slider`;
-CREATE TABLE IF NOT EXISTS `tbl_slider` (
-  `slider_id` int(100) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_slider` (
+  `slider_id` int(100) NOT NULL,
   `slider_judul` varchar(100) NOT NULL,
   `slider_tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `slider_gambar` mediumtext NOT NULL,
   `active` tinyint(1) NOT NULL,
   `slider_album_id` int(100) NOT NULL,
   `slider_pengguna_id` int(100) NOT NULL,
-  `slider_author` varchar(100) NOT NULL,
-  PRIMARY KEY (`slider_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=84 DEFAULT CHARSET=latin1;
+  `slider_author` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_slider`
+-- Dumping data untuk tabel `tbl_slider`
 --
 
 INSERT INTO `tbl_slider` (`slider_id`, `slider_judul`, `slider_tanggal`, `slider_gambar`, `active`, `slider_album_id`, `slider_pengguna_id`, `slider_author`) VALUES
 (80, 'slider1', '2019-04-21 03:06:08', '1afcc323c9b43da05bf1f21bb109a8b6.jpg', 0, 5, 9, 'Ramli Taliki'),
 (81, 'slider2', '2019-04-21 03:06:19', '8187735dd52f74c3025b33f3b84ab9bd.jpg', 0, 5, 9, 'Ramli Taliki'),
-(83, 'slider4', '2019-09-21 02:31:12', '98cf050c7c0ddd817ceeeb10481f731d.jpg', 1, 5, 9, 'Ramli Taliki');
+(90, 'slider3', '2019-12-04 01:10:18', '9c929a5901734a679fda23a3ca00b192.jpg', 1, 5, 9, 'Ramli Taliki');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_sotk`
+-- Struktur dari tabel `tbl_sotk`
 --
 
-DROP TABLE IF EXISTS `tbl_sotk`;
-CREATE TABLE IF NOT EXISTS `tbl_sotk` (
-  `sotk_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_sotk` (
+  `sotk_id` int(11) NOT NULL,
   `sotk_judul` varchar(100) NOT NULL,
   `sotk_isi` text NOT NULL,
-  `sotk_gambar` varchar(5000) NOT NULL,
-  PRIMARY KEY (`sotk_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `sotk_gambar` varchar(5000) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_sotk`
+-- Dumping data untuk tabel `tbl_sotk`
 --
 
 INSERT INTO `tbl_sotk` (`sotk_id`, `sotk_judul`, `sotk_isi`, `sotk_gambar`) VALUES
@@ -1490,40 +1386,36 @@ INSERT INTO `tbl_sotk` (`sotk_id`, `sotk_judul`, `sotk_isi`, `sotk_gambar`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_testimoni`
+-- Struktur dari tabel `tbl_testimoni`
 --
 
-DROP TABLE IF EXISTS `tbl_testimoni`;
-CREATE TABLE IF NOT EXISTS `tbl_testimoni` (
-  `testimoni_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_testimoni` (
+  `testimoni_id` int(11) NOT NULL,
   `testimoni_nama` varchar(30) DEFAULT NULL,
   `testimoni_isi` varchar(120) DEFAULT NULL,
   `testimoni_email` varchar(35) DEFAULT NULL,
-  `testimoni_tanggal` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`testimoni_id`)
+  `testimoni_tanggal` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_tld`
+-- Struktur dari tabel `tbl_tld`
 --
 
-DROP TABLE IF EXISTS `tbl_tld`;
-CREATE TABLE IF NOT EXISTS `tbl_tld` (
-  `tld_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_tld` (
+  `tld_id` int(11) NOT NULL,
   `tld_judul` varchar(100) NOT NULL,
   `tld_isi` text NOT NULL,
   `tld_gambar` varchar(5000) NOT NULL,
   `tld_alamat` varchar(100) NOT NULL,
   `tld_hp` varchar(100) NOT NULL,
   `tld_lurah` varchar(100) NOT NULL,
-  `tld_ket` varchar(100) NOT NULL,
-  PRIMARY KEY (`tld_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+  `tld_ket` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_tld`
+-- Dumping data untuk tabel `tbl_tld`
 --
 
 INSERT INTO `tbl_tld` (`tld_id`, `tld_judul`, `tld_isi`, `tld_gambar`, `tld_alamat`, `tld_hp`, `tld_lurah`, `tld_ket`) VALUES
@@ -1532,24 +1424,22 @@ INSERT INTO `tbl_tld` (`tld_id`, `tld_judul`, `tld_isi`, `tld_gambar`, `tld_alam
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_tomin`
+-- Struktur dari tabel `tbl_tomin`
 --
 
-DROP TABLE IF EXISTS `tbl_tomin`;
-CREATE TABLE IF NOT EXISTS `tbl_tomin` (
-  `tomin_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_tomin` (
+  `tomin_id` int(11) NOT NULL,
   `tomin_judul` varchar(100) NOT NULL,
   `tomin_isi` text NOT NULL,
   `tomin_gambar` varchar(5000) NOT NULL,
   `tomin_alamat` varchar(100) NOT NULL,
   `tomin_hp` varchar(100) NOT NULL,
   `tomin_lurah` varchar(100) NOT NULL,
-  `tomin_ket` varchar(100) NOT NULL,
-  PRIMARY KEY (`tomin_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+  `tomin_ket` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_tomin`
+-- Dumping data untuk tabel `tbl_tomin`
 --
 
 INSERT INTO `tbl_tomin` (`tomin_id`, `tomin_judul`, `tomin_isi`, `tomin_gambar`, `tomin_alamat`, `tomin_hp`, `tomin_lurah`, `tomin_ket`) VALUES
@@ -1558,24 +1448,22 @@ INSERT INTO `tbl_tomin` (`tomin_id`, `tomin_judul`, `tomin_isi`, `tomin_gambar`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_tomsel`
+-- Struktur dari tabel `tbl_tomsel`
 --
 
-DROP TABLE IF EXISTS `tbl_tomsel`;
-CREATE TABLE IF NOT EXISTS `tbl_tomsel` (
-  `tomsel_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_tomsel` (
+  `tomsel_id` int(11) NOT NULL,
   `tomsel_judul` varchar(100) NOT NULL,
   `tomsel_isi` text NOT NULL,
   `tomsel_gambar` varchar(5000) NOT NULL,
   `tomsel_alamat` varchar(100) NOT NULL,
   `tomsel_hp` varchar(100) NOT NULL,
   `tomsel_lurah` varchar(100) NOT NULL,
-  `tomsel_ket` varchar(100) NOT NULL,
-  PRIMARY KEY (`tomsel_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  `tomsel_ket` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_tomsel`
+-- Dumping data untuk tabel `tbl_tomsel`
 --
 
 INSERT INTO `tbl_tomsel` (`tomsel_id`, `tomsel_judul`, `tomsel_isi`, `tomsel_gambar`, `tomsel_alamat`, `tomsel_hp`, `tomsel_lurah`, `tomsel_ket`) VALUES
@@ -1584,12 +1472,11 @@ INSERT INTO `tbl_tomsel` (`tomsel_id`, `tomsel_judul`, `tomsel_isi`, `tomsel_gam
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_trantib`
+-- Struktur dari tabel `tbl_trantib`
 --
 
-DROP TABLE IF EXISTS `tbl_trantib`;
-CREATE TABLE IF NOT EXISTS `tbl_trantib` (
-  `trantib_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_trantib` (
+  `trantib_id` int(11) NOT NULL,
   `trantib_judul` varchar(60) NOT NULL,
   `trantib_datatrantib_id` int(11) DEFAULT NULL,
   `trantib_hbt` int(11) NOT NULL,
@@ -1599,14 +1486,11 @@ CREATE TABLE IF NOT EXISTS `tbl_trantib` (
   `trantib_tomsel` int(11) NOT NULL,
   `trantib_total` int(11) NOT NULL,
   `trantib_pengguna_id` int(11) NOT NULL,
-  `trantib_author` varchar(60) NOT NULL,
-  PRIMARY KEY (`trantib_id`),
-  KEY `ek_dataek_id` (`trantib_datatrantib_id`),
-  KEY `ekbang_pengguna_id` (`trantib_pengguna_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+  `trantib_author` varchar(60) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_trantib`
+-- Dumping data untuk tabel `tbl_trantib`
 --
 
 INSERT INTO `tbl_trantib` (`trantib_id`, `trantib_judul`, `trantib_datatrantib_id`, `trantib_hbt`, `trantib_lib`, `trantib_tld`, `trantib_tom`, `trantib_tomsel`, `trantib_total`, `trantib_pengguna_id`, `trantib_author`) VALUES
@@ -1620,12 +1504,11 @@ INSERT INTO `tbl_trantib` (`trantib_id`, `trantib_judul`, `trantib_datatrantib_i
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_tulisan`
+-- Struktur dari tabel `tbl_tulisan`
 --
 
-DROP TABLE IF EXISTS `tbl_tulisan`;
-CREATE TABLE IF NOT EXISTS `tbl_tulisan` (
-  `tulisan_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_tulisan` (
+  `tulisan_id` int(11) NOT NULL,
   `tulisan_judul` varchar(100) DEFAULT NULL,
   `tulisan_isi` text,
   `tulisan_tanggal` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
@@ -1636,14 +1519,11 @@ CREATE TABLE IF NOT EXISTS `tbl_tulisan` (
   `tulisan_pengguna_id` int(11) DEFAULT NULL,
   `tulisan_author` varchar(40) DEFAULT NULL,
   `tulisan_img_slider` int(2) NOT NULL DEFAULT '0',
-  `tulisan_slug` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`tulisan_id`),
-  KEY `tulisan_kategori_id` (`tulisan_kategori_id`),
-  KEY `tulisan_pengguna_id` (`tulisan_pengguna_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+  `tulisan_slug` varchar(200) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_tulisan`
+-- Dumping data untuk tabel `tbl_tulisan`
 --
 
 INSERT INTO `tbl_tulisan` (`tulisan_id`, `tulisan_judul`, `tulisan_isi`, `tulisan_tanggal`, `tulisan_kategori_id`, `tulisan_kategori_nama`, `tulisan_views`, `tulisan_gambar`, `tulisan_pengguna_id`, `tulisan_author`, `tulisan_img_slider`, `tulisan_slug`) VALUES
@@ -1652,27 +1532,25 @@ INSERT INTO `tbl_tulisan` (`tulisan_id`, `tulisan_judul`, `tulisan_isi`, `tulisa
 (27, 'Tes', '<p>Teatesdgdgdg</p>\r\n', '2019-04-07 22:05:09', 1, 'Pelayanan Publik', 2, '9f620ed2a9626196cbaaf6a38d960ea8.jpg', 9, 'Ramli Taliki', 0, 'tes'),
 (28, 'Tes upload dari hp', '<p>Berita ini di upload pakai hp</p>\r\n', '2019-04-08 00:09:16', 6, 'Ketentraman Dan Ketertiban', 9, '294f71e8185bdd121f61ddbbe707974d.jpg', 9, 'Ramli Taliki', 0, 'tes-upload-dari-hp'),
 (29, 'Tes TEs TEs ', '<p>serhtrshtrjytjtfjmuyfkfmnhfmmum</p>\r\n\r\n<p>murmuymkuymuymmurmumumu</p>\r\n\r\n<p>murmurmurmrmmumm</p>\r\n', '2019-04-09 11:48:28', 2, 'Pemerintahan', 1, '2f2d966d6bd8711d7dbdc665f2c20540.png', 9, 'Ramli Taliki', 0, 'tes-tes-tes'),
-(30, 'Dungingi dlm Berita', '<p>Segera kunjungi website kecamatan dungingi</p>\r\n', '2019-04-10 06:55:58', 17, 'Umum', 50, '65ba1812999ac1edc11ef344a02887f1.png', 9, 'Ramli Taliki', 0, 'dungingi-dlm-berita');
+(30, 'Dungingi dlm Berita', '<p>Segera kunjungi website kecamatan dungingi</p>\r\n', '2019-04-10 06:55:58', 17, 'Umum', 51, '65ba1812999ac1edc11ef344a02887f1.png', 9, 'Ramli Taliki', 0, 'dungingi-dlm-berita');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_tunggakan`
+-- Struktur dari tabel `tbl_tunggakan`
 --
 
-DROP TABLE IF EXISTS `tbl_tunggakan`;
-CREATE TABLE IF NOT EXISTS `tbl_tunggakan` (
-  `tunggakan_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_tunggakan` (
+  `tunggakan_id` int(11) NOT NULL,
   `tunggakan_kelurahan_id` int(11) NOT NULL,
   `tunggakan_judul` varchar(50) NOT NULL,
   `tunggakan_jumlah` int(11) NOT NULL,
   `tunggakan_tahun` year(4) NOT NULL,
-  `tunggakan_ket` varchar(100) NOT NULL,
-  PRIMARY KEY (`tunggakan_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+  `tunggakan_ket` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_tunggakan`
+-- Dumping data untuk tabel `tbl_tunggakan`
 --
 
 INSERT INTO `tbl_tunggakan` (`tunggakan_id`, `tunggakan_kelurahan_id`, `tunggakan_judul`, `tunggakan_jumlah`, `tunggakan_tahun`, `tunggakan_ket`) VALUES
@@ -1682,23 +1560,21 @@ INSERT INTO `tbl_tunggakan` (`tunggakan_id`, `tunggakan_kelurahan_id`, `tunggaka
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_umkm`
+-- Struktur dari tabel `tbl_umkm`
 --
 
-DROP TABLE IF EXISTS `tbl_umkm`;
-CREATE TABLE IF NOT EXISTS `tbl_umkm` (
-  `umkm_id` int(100) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_umkm` (
+  `umkm_id` int(100) NOT NULL,
   `umkm_judul` varchar(100) NOT NULL,
   `umkm_tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `umkm_gambar` mediumtext NOT NULL,
   `umkm_album_id` int(100) NOT NULL,
   `umkm_pengguna_id` int(100) NOT NULL,
-  `umkm_author` varchar(100) NOT NULL,
-  PRIMARY KEY (`umkm_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+  `umkm_author` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_umkm`
+-- Dumping data untuk tabel `tbl_umkm`
 --
 
 INSERT INTO `tbl_umkm` (`umkm_id`, `umkm_judul`, `umkm_tanggal`, `umkm_gambar`, `umkm_album_id`, `umkm_pengguna_id`, `umkm_author`) VALUES
@@ -1708,21 +1584,19 @@ INSERT INTO `tbl_umkm` (`umkm_id`, `umkm_judul`, `umkm_tanggal`, `umkm_gambar`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_visi`
+-- Struktur dari tabel `tbl_visi`
 --
 
-DROP TABLE IF EXISTS `tbl_visi`;
-CREATE TABLE IF NOT EXISTS `tbl_visi` (
-  `visi_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_visi` (
+  `visi_id` int(11) NOT NULL,
   `visi_judul` varchar(100) NOT NULL,
   `visi_tanggal` date NOT NULL,
   `visi_isi` text NOT NULL,
-  `visi_gambar` varchar(10000) NOT NULL,
-  PRIMARY KEY (`visi_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  `visi_gambar` varchar(10000) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_visi`
+-- Dumping data untuk tabel `tbl_visi`
 --
 
 INSERT INTO `tbl_visi` (`visi_id`, `visi_judul`, `visi_tanggal`, `visi_isi`, `visi_gambar`) VALUES
@@ -1731,19 +1605,17 @@ INSERT INTO `tbl_visi` (`visi_id`, `visi_judul`, `visi_tanggal`, `visi_isi`, `vi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_access_menu`
+-- Struktur dari tabel `user_access_menu`
 --
 
-DROP TABLE IF EXISTS `user_access_menu`;
-CREATE TABLE IF NOT EXISTS `user_access_menu` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `user_access_menu` (
+  `id` int(11) NOT NULL,
   `pengguna_id` int(11) NOT NULL,
-  `menu_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+  `menu_id` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user_access_menu`
+-- Dumping data untuk tabel `user_access_menu`
 --
 
 INSERT INTO `user_access_menu` (`id`, `pengguna_id`, `menu_id`) VALUES
@@ -1756,18 +1628,16 @@ INSERT INTO `user_access_menu` (`id`, `pengguna_id`, `menu_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_menu`
+-- Struktur dari tabel `user_menu`
 --
 
-DROP TABLE IF EXISTS `user_menu`;
-CREATE TABLE IF NOT EXISTS `user_menu` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `menu` varchar(128) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+CREATE TABLE `user_menu` (
+  `id` int(11) NOT NULL,
+  `menu` varchar(128) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user_menu`
+-- Dumping data untuk tabel `user_menu`
 --
 
 INSERT INTO `user_menu` (`id`, `menu`) VALUES
@@ -1778,18 +1648,16 @@ INSERT INTO `user_menu` (`id`, `menu`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_role`
+-- Struktur dari tabel `user_role`
 --
 
-DROP TABLE IF EXISTS `user_role`;
-CREATE TABLE IF NOT EXISTS `user_role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `role` varchar(128) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+CREATE TABLE `user_role` (
+  `id` int(11) NOT NULL,
+  `role` varchar(128) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user_role`
+-- Dumping data untuk tabel `user_role`
 --
 
 INSERT INTO `user_role` (`id`, `role`) VALUES
@@ -1799,23 +1667,21 @@ INSERT INTO `user_role` (`id`, `role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_ss_menu`
+-- Struktur dari tabel `user_ss_menu`
 --
 
-DROP TABLE IF EXISTS `user_ss_menu`;
-CREATE TABLE IF NOT EXISTS `user_ss_menu` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `user_ss_menu` (
+  `id` int(11) NOT NULL,
   `menu_id` varchar(128) NOT NULL,
   `menu_ss` varchar(128) NOT NULL,
   `title` varchar(128) NOT NULL,
   `url` varchar(128) NOT NULL,
   `icon` varchar(128) NOT NULL,
-  `pengguna_status` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+  `pengguna_status` int(1) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user_ss_menu`
+-- Dumping data untuk tabel `user_ss_menu`
 --
 
 INSERT INTO `user_ss_menu` (`id`, `menu_id`, `menu_ss`, `title`, `url`, `icon`, `pengguna_status`) VALUES
@@ -1832,23 +1698,21 @@ INSERT INTO `user_ss_menu` (`id`, `menu_id`, `menu_ss`, `title`, `url`, `icon`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_sub_menu`
+-- Struktur dari tabel `user_sub_menu`
 --
 
-DROP TABLE IF EXISTS `user_sub_menu`;
-CREATE TABLE IF NOT EXISTS `user_sub_menu` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `user_sub_menu` (
+  `id` int(11) NOT NULL,
   `menu_id` int(11) NOT NULL,
   `title` varchar(128) NOT NULL,
   `subtitle` varchar(128) NOT NULL,
   `url` varchar(128) NOT NULL,
   `icon` varchar(128) NOT NULL,
-  `pengguna_status` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+  `pengguna_status` int(1) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user_sub_menu`
+-- Dumping data untuk tabel `user_sub_menu`
 --
 
 INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `subtitle`, `url`, `icon`, `pengguna_status`) VALUES
@@ -1869,23 +1733,21 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `subtitle`, `url`, `icon`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_tree_menu`
+-- Struktur dari tabel `user_tree_menu`
 --
 
-DROP TABLE IF EXISTS `user_tree_menu`;
-CREATE TABLE IF NOT EXISTS `user_tree_menu` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `user_tree_menu` (
+  `id` int(11) NOT NULL,
   `menu_id` varchar(128) NOT NULL,
   `menu_tree` varchar(128) NOT NULL,
   `title` varchar(128) NOT NULL,
   `url` varchar(128) NOT NULL,
   `icon` varchar(128) NOT NULL,
-  `pengguna_status` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+  `pengguna_status` int(1) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user_tree_menu`
+-- Dumping data untuk tabel `user_tree_menu`
 --
 
 INSERT INTO `user_tree_menu` (`id`, `menu_id`, `menu_tree`, `title`, `url`, `icon`, `pengguna_status`) VALUES
@@ -1923,6 +1785,796 @@ INSERT INTO `user_tree_menu` (`id`, `menu_id`, `menu_tree`, `title`, `url`, `ico
 (32, '10', '5', 'Tomulabutao', 'adminkantor/tomin', 'fa fa-fw fa-university', 1),
 (33, '10', '5', 'Tomulabutao Selatan', 'adminkantor/tomsel', 'fa fa-fw fa-university', 1),
 (34, '11', '6', 'Laporan Penduduk', 'kepalaseksi/lapen', 'fa fa-fw fa-bookmark', 1);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indeks untuk tabel `keys`
+--
+ALTER TABLE `keys`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `limits`
+--
+ALTER TABLE `limits`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tbl_agenda`
+--
+ALTER TABLE `tbl_agenda`
+  ADD PRIMARY KEY (`agenda_id`);
+
+--
+-- Indeks untuk tabel `tbl_album`
+--
+ALTER TABLE `tbl_album`
+  ADD PRIMARY KEY (`album_id`),
+  ADD KEY `album_pengguna_id` (`album_pengguna_id`);
+
+--
+-- Indeks untuk tabel `tbl_bulan`
+--
+ALTER TABLE `tbl_bulan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tbl_camat`
+--
+ALTER TABLE `tbl_camat`
+  ADD PRIMARY KEY (`camat_id`);
+
+--
+-- Indeks untuk tabel `tbl_customer`
+--
+ALTER TABLE `tbl_customer`
+  ADD PRIMARY KEY (`CustomerID`);
+
+--
+-- Indeks untuk tabel `tbl_dataekbang`
+--
+ALTER TABLE `tbl_dataekbang`
+  ADD PRIMARY KEY (`dataekbang_id`),
+  ADD KEY `dataekbang_pengguna_id` (`dataekbang_pengguna_id`),
+  ADD KEY `dataekbang_nama` (`dataekbang_nama`);
+
+--
+-- Indeks untuk tabel `tbl_datakesra`
+--
+ALTER TABLE `tbl_datakesra`
+  ADD PRIMARY KEY (`datakesra_id`),
+  ADD KEY `dataekbang_pengguna_id` (`datakesra_pengguna_id`),
+  ADD KEY `dataekbang_nama` (`datakesra_nama`);
+
+--
+-- Indeks untuk tabel `tbl_datapem`
+--
+ALTER TABLE `tbl_datapem`
+  ADD PRIMARY KEY (`datapem_id`),
+  ADD KEY `dataekbang_pengguna_id` (`datapem_pengguna_id`),
+  ADD KEY `dataekbang_nama` (`datapem_nama`);
+
+--
+-- Indeks untuk tabel `tbl_datatrantib`
+--
+ALTER TABLE `tbl_datatrantib`
+  ADD PRIMARY KEY (`datatrantib_id`),
+  ADD KEY `dataekbang_pengguna_id` (`datatrantib_pengguna_id`),
+  ADD KEY `dataekbang_nama` (`datatrantib_nama`);
+
+--
+-- Indeks untuk tabel `tbl_ekbang`
+--
+ALTER TABLE `tbl_ekbang`
+  ADD PRIMARY KEY (`ekbang_id`),
+  ADD KEY `ek_dataek_id` (`ekbang_dataekbang_id`),
+  ADD KEY `ekbang_pengguna_id` (`ekbang_pengguna_id`);
+
+--
+-- Indeks untuk tabel `tbl_ektp`
+--
+ALTER TABLE `tbl_ektp`
+  ADD PRIMARY KEY (`ektp_id`),
+  ADD KEY `ektp_kelurahan_id` (`ektp_kelurahan_id`);
+
+--
+-- Indeks untuk tabel `tbl_files`
+--
+ALTER TABLE `tbl_files`
+  ADD PRIMARY KEY (`file_id`);
+
+--
+-- Indeks untuk tabel `tbl_galeri`
+--
+ALTER TABLE `tbl_galeri`
+  ADD PRIMARY KEY (`galeri_id`),
+  ADD KEY `galeri_album_id` (`galeri_album_id`),
+  ADD KEY `galeri_pengguna_id` (`galeri_pengguna_id`);
+
+--
+-- Indeks untuk tabel `tbl_guru`
+--
+ALTER TABLE `tbl_guru`
+  ADD PRIMARY KEY (`guru_id`);
+
+--
+-- Indeks untuk tabel `tbl_hotel`
+--
+ALTER TABLE `tbl_hotel`
+  ADD PRIMARY KEY (`hotel_id`);
+
+--
+-- Indeks untuk tabel `tbl_huangobotu`
+--
+ALTER TABLE `tbl_huangobotu`
+  ADD PRIMARY KEY (`huangobotu_id`);
+
+--
+-- Indeks untuk tabel `tbl_ijin`
+--
+ALTER TABLE `tbl_ijin`
+  ADD PRIMARY KEY (`ijin_id`);
+
+--
+-- Indeks untuk tabel `tbl_inbox`
+--
+ALTER TABLE `tbl_inbox`
+  ADD PRIMARY KEY (`inbox_id`);
+
+--
+-- Indeks untuk tabel `tbl_kategori`
+--
+ALTER TABLE `tbl_kategori`
+  ADD PRIMARY KEY (`kategori_id`);
+
+--
+-- Indeks untuk tabel `tbl_kelas`
+--
+ALTER TABLE `tbl_kelas`
+  ADD PRIMARY KEY (`kelas_id`);
+
+--
+-- Indeks untuk tabel `tbl_kelurahan`
+--
+ALTER TABLE `tbl_kelurahan`
+  ADD PRIMARY KEY (`kelurahan_id`);
+
+--
+-- Indeks untuk tabel `tbl_kesra`
+--
+ALTER TABLE `tbl_kesra`
+  ADD PRIMARY KEY (`kesra_id`),
+  ADD KEY `ek_dataek_id` (`kesra_datakesra_id`),
+  ADD KEY `ekbang_pengguna_id` (`kesra_pengguna_id`);
+
+--
+-- Indeks untuk tabel `tbl_komentar`
+--
+ALTER TABLE `tbl_komentar`
+  ADD PRIMARY KEY (`komentar_id`),
+  ADD KEY `komentar_tulisan_id` (`komentar_tulisan_id`);
+
+--
+-- Indeks untuk tabel `tbl_lapen`
+--
+ALTER TABLE `tbl_lapen`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tbl_layanan`
+--
+ALTER TABLE `tbl_layanan`
+  ADD PRIMARY KEY (`layanan_id`),
+  ADD KEY `layanan_kelurahan_id` (`layanan_kelurahan_id`);
+
+--
+-- Indeks untuk tabel `tbl_libuo`
+--
+ALTER TABLE `tbl_libuo`
+  ADD PRIMARY KEY (`libuo_id`);
+
+--
+-- Indeks untuk tabel `tbl_log_aktivitas`
+--
+ALTER TABLE `tbl_log_aktivitas`
+  ADD PRIMARY KEY (`log_id`),
+  ADD KEY `log_pengguna_id` (`log_pengguna_id`);
+
+--
+-- Indeks untuk tabel `tbl_lpm`
+--
+ALTER TABLE `tbl_lpm`
+  ADD PRIMARY KEY (`lpm_id`);
+
+--
+-- Indeks untuk tabel `tbl_nonijin`
+--
+ALTER TABLE `tbl_nonijin`
+  ADD PRIMARY KEY (`nonijin_id`);
+
+--
+-- Indeks untuk tabel `tbl_nopen`
+--
+ALTER TABLE `tbl_nopen`
+  ADD PRIMARY KEY (`nopen_id`);
+
+--
+-- Indeks untuk tabel `tbl_online`
+--
+ALTER TABLE `tbl_online`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tbl_pbb`
+--
+ALTER TABLE `tbl_pbb`
+  ADD PRIMARY KEY (`pbb_id`);
+
+--
+-- Indeks untuk tabel `tbl_pem`
+--
+ALTER TABLE `tbl_pem`
+  ADD PRIMARY KEY (`pem_id`),
+  ADD KEY `ek_dataek_id` (`pem_datapem_id`),
+  ADD KEY `ekbang_pengguna_id` (`pem_pengguna_id`);
+
+--
+-- Indeks untuk tabel `tbl_penduduk`
+--
+ALTER TABLE `tbl_penduduk`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tbl_pengguna`
+--
+ALTER TABLE `tbl_pengguna`
+  ADD PRIMARY KEY (`pengguna_id`);
+
+--
+-- Indeks untuk tabel `tbl_pengumuman`
+--
+ALTER TABLE `tbl_pengumuman`
+  ADD PRIMARY KEY (`pengumuman_id`);
+
+--
+-- Indeks untuk tabel `tbl_pengunjung`
+--
+ALTER TABLE `tbl_pengunjung`
+  ADD PRIMARY KEY (`pengunjung_id`);
+
+--
+-- Indeks untuk tabel `tbl_perum`
+--
+ALTER TABLE `tbl_perum`
+  ADD PRIMARY KEY (`perum_id`);
+
+--
+-- Indeks untuk tabel `tbl_peta`
+--
+ALTER TABLE `tbl_peta`
+  ADD PRIMARY KEY (`peta_id`);
+
+--
+-- Indeks untuk tabel `tbl_poll`
+--
+ALTER TABLE `tbl_poll`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tbl_potensi`
+--
+ALTER TABLE `tbl_potensi`
+  ADD PRIMARY KEY (`potensi_id`),
+  ADD KEY `potensi_kelurahan_id` (`potensi_kelurahan_id`);
+
+--
+-- Indeks untuk tabel `tbl_sejarah`
+--
+ALTER TABLE `tbl_sejarah`
+  ADD PRIMARY KEY (`sejarah_id`);
+
+--
+-- Indeks untuk tabel `tbl_service`
+--
+ALTER TABLE `tbl_service`
+  ADD PRIMARY KEY (`service_id`);
+
+--
+-- Indeks untuk tabel `tbl_siswa`
+--
+ALTER TABLE `tbl_siswa`
+  ADD PRIMARY KEY (`siswa_id`);
+
+--
+-- Indeks untuk tabel `tbl_slider`
+--
+ALTER TABLE `tbl_slider`
+  ADD PRIMARY KEY (`slider_id`);
+
+--
+-- Indeks untuk tabel `tbl_sotk`
+--
+ALTER TABLE `tbl_sotk`
+  ADD PRIMARY KEY (`sotk_id`);
+
+--
+-- Indeks untuk tabel `tbl_testimoni`
+--
+ALTER TABLE `tbl_testimoni`
+  ADD PRIMARY KEY (`testimoni_id`);
+
+--
+-- Indeks untuk tabel `tbl_tld`
+--
+ALTER TABLE `tbl_tld`
+  ADD PRIMARY KEY (`tld_id`);
+
+--
+-- Indeks untuk tabel `tbl_tomin`
+--
+ALTER TABLE `tbl_tomin`
+  ADD PRIMARY KEY (`tomin_id`);
+
+--
+-- Indeks untuk tabel `tbl_tomsel`
+--
+ALTER TABLE `tbl_tomsel`
+  ADD PRIMARY KEY (`tomsel_id`);
+
+--
+-- Indeks untuk tabel `tbl_trantib`
+--
+ALTER TABLE `tbl_trantib`
+  ADD PRIMARY KEY (`trantib_id`),
+  ADD KEY `ek_dataek_id` (`trantib_datatrantib_id`),
+  ADD KEY `ekbang_pengguna_id` (`trantib_pengguna_id`);
+
+--
+-- Indeks untuk tabel `tbl_tulisan`
+--
+ALTER TABLE `tbl_tulisan`
+  ADD PRIMARY KEY (`tulisan_id`),
+  ADD KEY `tulisan_kategori_id` (`tulisan_kategori_id`),
+  ADD KEY `tulisan_pengguna_id` (`tulisan_pengguna_id`);
+
+--
+-- Indeks untuk tabel `tbl_tunggakan`
+--
+ALTER TABLE `tbl_tunggakan`
+  ADD PRIMARY KEY (`tunggakan_id`);
+
+--
+-- Indeks untuk tabel `tbl_umkm`
+--
+ALTER TABLE `tbl_umkm`
+  ADD PRIMARY KEY (`umkm_id`);
+
+--
+-- Indeks untuk tabel `tbl_visi`
+--
+ALTER TABLE `tbl_visi`
+  ADD PRIMARY KEY (`visi_id`);
+
+--
+-- Indeks untuk tabel `user_access_menu`
+--
+ALTER TABLE `user_access_menu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `user_menu`
+--
+ALTER TABLE `user_menu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `user_role`
+--
+ALTER TABLE `user_role`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `user_ss_menu`
+--
+ALTER TABLE `user_ss_menu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `user_sub_menu`
+--
+ALTER TABLE `user_sub_menu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `user_tree_menu`
+--
+ALTER TABLE `user_tree_menu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
+--
+
+--
+-- AUTO_INCREMENT untuk tabel `keys`
+--
+ALTER TABLE `keys`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `limits`
+--
+ALTER TABLE `limits`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_agenda`
+--
+ALTER TABLE `tbl_agenda`
+  MODIFY `agenda_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_album`
+--
+ALTER TABLE `tbl_album`
+  MODIFY `album_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_bulan`
+--
+ALTER TABLE `tbl_bulan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_camat`
+--
+ALTER TABLE `tbl_camat`
+  MODIFY `camat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_customer`
+--
+ALTER TABLE `tbl_customer`
+  MODIFY `CustomerID` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_dataekbang`
+--
+ALTER TABLE `tbl_dataekbang`
+  MODIFY `dataekbang_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_datakesra`
+--
+ALTER TABLE `tbl_datakesra`
+  MODIFY `datakesra_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_datapem`
+--
+ALTER TABLE `tbl_datapem`
+  MODIFY `datapem_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_datatrantib`
+--
+ALTER TABLE `tbl_datatrantib`
+  MODIFY `datatrantib_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_ekbang`
+--
+ALTER TABLE `tbl_ekbang`
+  MODIFY `ekbang_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_ektp`
+--
+ALTER TABLE `tbl_ektp`
+  MODIFY `ektp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_files`
+--
+ALTER TABLE `tbl_files`
+  MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_galeri`
+--
+ALTER TABLE `tbl_galeri`
+  MODIFY `galeri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_guru`
+--
+ALTER TABLE `tbl_guru`
+  MODIFY `guru_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_hotel`
+--
+ALTER TABLE `tbl_hotel`
+  MODIFY `hotel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_huangobotu`
+--
+ALTER TABLE `tbl_huangobotu`
+  MODIFY `huangobotu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_ijin`
+--
+ALTER TABLE `tbl_ijin`
+  MODIFY `ijin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_inbox`
+--
+ALTER TABLE `tbl_inbox`
+  MODIFY `inbox_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_kategori`
+--
+ALTER TABLE `tbl_kategori`
+  MODIFY `kategori_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_kelas`
+--
+ALTER TABLE `tbl_kelas`
+  MODIFY `kelas_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_kelurahan`
+--
+ALTER TABLE `tbl_kelurahan`
+  MODIFY `kelurahan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_kesra`
+--
+ALTER TABLE `tbl_kesra`
+  MODIFY `kesra_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_komentar`
+--
+ALTER TABLE `tbl_komentar`
+  MODIFY `komentar_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_lapen`
+--
+ALTER TABLE `tbl_lapen`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_layanan`
+--
+ALTER TABLE `tbl_layanan`
+  MODIFY `layanan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_libuo`
+--
+ALTER TABLE `tbl_libuo`
+  MODIFY `libuo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_log_aktivitas`
+--
+ALTER TABLE `tbl_log_aktivitas`
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_lpm`
+--
+ALTER TABLE `tbl_lpm`
+  MODIFY `lpm_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_nonijin`
+--
+ALTER TABLE `tbl_nonijin`
+  MODIFY `nonijin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_nopen`
+--
+ALTER TABLE `tbl_nopen`
+  MODIFY `nopen_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_online`
+--
+ALTER TABLE `tbl_online`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_pbb`
+--
+ALTER TABLE `tbl_pbb`
+  MODIFY `pbb_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_pem`
+--
+ALTER TABLE `tbl_pem`
+  MODIFY `pem_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_penduduk`
+--
+ALTER TABLE `tbl_penduduk`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_pengguna`
+--
+ALTER TABLE `tbl_pengguna`
+  MODIFY `pengguna_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_pengumuman`
+--
+ALTER TABLE `tbl_pengumuman`
+  MODIFY `pengumuman_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_pengunjung`
+--
+ALTER TABLE `tbl_pengunjung`
+  MODIFY `pengunjung_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1039;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_perum`
+--
+ALTER TABLE `tbl_perum`
+  MODIFY `perum_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_peta`
+--
+ALTER TABLE `tbl_peta`
+  MODIFY `peta_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_poll`
+--
+ALTER TABLE `tbl_poll`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_potensi`
+--
+ALTER TABLE `tbl_potensi`
+  MODIFY `potensi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_sejarah`
+--
+ALTER TABLE `tbl_sejarah`
+  MODIFY `sejarah_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_service`
+--
+ALTER TABLE `tbl_service`
+  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_siswa`
+--
+ALTER TABLE `tbl_siswa`
+  MODIFY `siswa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_slider`
+--
+ALTER TABLE `tbl_slider`
+  MODIFY `slider_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_sotk`
+--
+ALTER TABLE `tbl_sotk`
+  MODIFY `sotk_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_testimoni`
+--
+ALTER TABLE `tbl_testimoni`
+  MODIFY `testimoni_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_tld`
+--
+ALTER TABLE `tbl_tld`
+  MODIFY `tld_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_tomin`
+--
+ALTER TABLE `tbl_tomin`
+  MODIFY `tomin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_tomsel`
+--
+ALTER TABLE `tbl_tomsel`
+  MODIFY `tomsel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_trantib`
+--
+ALTER TABLE `tbl_trantib`
+  MODIFY `trantib_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_tulisan`
+--
+ALTER TABLE `tbl_tulisan`
+  MODIFY `tulisan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_tunggakan`
+--
+ALTER TABLE `tbl_tunggakan`
+  MODIFY `tunggakan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_umkm`
+--
+ALTER TABLE `tbl_umkm`
+  MODIFY `umkm_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_visi`
+--
+ALTER TABLE `tbl_visi`
+  MODIFY `visi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT untuk tabel `user_access_menu`
+--
+ALTER TABLE `user_access_menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT untuk tabel `user_menu`
+--
+ALTER TABLE `user_menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT untuk tabel `user_role`
+--
+ALTER TABLE `user_role`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `user_ss_menu`
+--
+ALTER TABLE `user_ss_menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT untuk tabel `user_sub_menu`
+--
+ALTER TABLE `user_sub_menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT untuk tabel `user_tree_menu`
+--
+ALTER TABLE `user_tree_menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
