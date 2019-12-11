@@ -38,7 +38,8 @@ class Ekbang extends CI_Controller
 		$tld = strip_tags($this->input->post('xtld'));
 		$tom = strip_tags($this->input->post('xtom'));
 		$tomsel = strip_tags($this->input->post('xtomsel'));
-		$this->m_ekbang->simpan_ekbang($judul, $dataekbang, $user_id, $user_nama, $hbt, $lib, $tld, $tom, $tomsel);
+		$total = strip_tags($this->input->post('xtotal'));
+		$this->m_ekbang->simpan_ekbang($judul, $dataekbang, $user_id, $user_nama, $hbt, $lib, $tld, $tom, $tomsel, $total);
 		echo $this->session->set_flashdata('msg', 'success');
 		redirect('kepalaseksi/ekbang');
 	}
@@ -60,9 +61,10 @@ class Ekbang extends CI_Controller
 		$tld = strip_tags($this->input->post('xtld'));
 		$tom = strip_tags($this->input->post('xtom'));
 		$tomsel = strip_tags($this->input->post('xtomsel'));
+		$total = strip_tags($this->input->post('xtotal'));
 
 
-		$this->m_ekbang->update_ekbang_tanpa_img($ekbang_id, $judul, $dataekbang, $user_id, $user_nama, $hbt, $lib, $tld, $tom, $tomsel);
+		$this->m_ekbang->update_ekbang_tanpa_img($ekbang_id, $judul, $dataekbang, $user_id, $user_nama, $hbt, $lib, $tld, $tom, $tomsel,$total);
 		echo $this->session->set_flashdata('msg', 'info');
 		redirect('kepalaseksi/ekbang');
 	}

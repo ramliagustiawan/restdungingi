@@ -31,7 +31,7 @@ class Files extends CI_Controller
 		$name = $file;
 
 		force_download($name, $data);
-		redirect('admin/files');
+		redirect('superadmin/files');
 	}
 
 	function simpan_file()
@@ -51,13 +51,13 @@ class Files extends CI_Controller
 
 				$this->m_files->simpan_file($judul, $deskripsi, $oleh, $file);
 				echo $this->session->set_flashdata('msg', 'success');
-				redirect('admin/files');
+				redirect('superadmin/files');
 			} else {
 				echo $this->session->set_flashdata('msg', 'warning');
-				redirect('admin/files');
+				redirect('superadmin/files');
 			}
 		} else {
-			redirect('admin/files');
+			redirect('superadmin/files');
 		}
 	}
 
@@ -82,10 +82,10 @@ class Files extends CI_Controller
 				unlink($path);
 				$this->m_files->update_file($kode, $judul, $deskripsi, $oleh, $file);
 				echo $this->session->set_flashdata('msg', 'info');
-				redirect('admin/files');
+				redirect('superadmin/files');
 			} else {
 				echo $this->session->set_flashdata('msg', 'warning');
-				redirect('admin/files');
+				redirect('superadmin/files');
 			}
 		} else {
 			$kode = $this->input->post('kode');
@@ -94,7 +94,7 @@ class Files extends CI_Controller
 			$oleh = strip_tags($this->input->post('xoleh'));
 			$this->m_files->update_file_tanpa_file($kode, $judul, $deskripsi, $oleh);
 			echo $this->session->set_flashdata('msg', 'info');
-			redirect('admin/files');
+			redirect('superadmin/files');
 		}
 	}
 
@@ -106,6 +106,6 @@ class Files extends CI_Controller
 		unlink($path);
 		$this->m_files->hapus_file($kode);
 		echo $this->session->set_flashdata('msg', 'success-hapus');
-		redirect('admin/files');
+		redirect('superadmin/files');
 	}
 }

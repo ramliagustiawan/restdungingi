@@ -64,16 +64,10 @@ class M_ekbang extends CI_Model
 	function jumlah()
 	{
 
-		$sql = "SELECT  ekbang_id, ekbang_hbt + ekbang_tld + ekbang_lib + ekbang_tom + ekbang_tomsel AS total FROM tbl_ekbang";
-		$result = $this->db->query($sql);
-		return $result->row()->total;
-
-		// $this->db->select("ekbang_id,(ekbang_hbt)+(ekbang_lib)+(ekbang_tld)+(ekbang_tom)+(ekbang_tomsel) as total");
-		// $this->db->from("tbl_ekbang");
-		// return $this->db->get()->row()->total;
-
-		// $sql = "SELECT sum(ekbang_hbt) AS ekbang_hbt From tbl_ekbang";
-		// $result = $this->db->query($sql);
-		// return $result->row()->ekbang_hbt;
+		
+		$this->db->select('SUM(ekbang_hbt+ekbang_lib+ekbang_tld) AS ekbang_total');
+		$this->db->from('tbl_ekbang');
+		return $this->db->get()->row()->ekbang_total; 
 	}
+
 }
