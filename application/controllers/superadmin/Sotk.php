@@ -48,9 +48,9 @@ class Sotk extends CI_Controller
 				$config['source_image'] = './assets/images/' . $gbr['file_name'];
 				$config['create_thumb'] = FALSE;
 				$config['maintain_ratio'] = FALSE;
-				$config['quality'] = '60%';
-				$config['width'] = 710;
-				$config['height'] = 460;
+				$config['quality'] = '100%';
+				$config['width'] = 1260;
+				$config['height'] = 498;
 				$config['new_image'] = './assets/images/' . $gbr['file_name'];
 				$this->load->library('image_lib', $config);
 				$this->image_lib->resize();
@@ -100,7 +100,7 @@ class Sotk extends CI_Controller
 				$config['source_image'] = './assets/images/' . $gbr['file_name'];
 				$config['create_thumb'] = FALSE;
 				$config['maintain_ratio'] = FALSE;
-				$config['quality'] = '60%';
+				$config['quality'] = '100%';
 				$config['width'] = 710;
 				$config['height'] = 460;
 				$config['new_image'] = './assets/images/' . $gbr['file_name'];
